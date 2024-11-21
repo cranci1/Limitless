@@ -20,29 +20,34 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertController *alert = [UIAlertController
-                    alertControllerWithTitle:@"Limitless delay"
-                    message:@"Enter delay time in seconds for when to crash the app"
+                    alertControllerWithTitle:@"Limitless Delay"
+                    message:@"Choose delay time before crash"
                     preferredStyle:UIAlertControllerStyleAlert];
                 
-                [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-                    textField.keyboardType = UIKeyboardTypeNumberPad;
-                    textField.placeholder = @"300";
-                }];
-                
-                UIAlertAction *confirmAction = [UIAlertAction
-                    actionWithTitle:@"Confirm"
+                UIAlertAction *threeMinAction = [UIAlertAction
+                    actionWithTitle:@"3 Minutes"
                     style:UIAlertActionStyleDefault
                     handler:^(UIAlertAction *action) {
-                        NSString *input = alert.textFields.firstObject.text;
-                        double seconds = input.length > 0 ? input.doubleValue : 300.0;
-                        
-                        [[NSUserDefaults standardUserDefaults] setDouble:seconds forKey:@"DelayTimeInSeconds"];
-                        [[NSUserDefaults standardUserDefaults] synchronize];
-                        
-                        [self scheduleAbortWithDelay:seconds];
+                        [self saveAndScheduleDelay:3 * 60];
                     }];
                 
-                [alert addAction:confirmAction];
+                UIAlertAction *fiveMinAction = [UIAlertAction
+                    actionWithTitle:@"5 Minutes"
+                    style:UIAlertActionStyleDefault
+                    handler:^(UIAlertAction *action) {
+                        [self saveAndScheduleDelay:5 * 60];
+                    }];
+                
+                UIAlertAction *tenMinAction = [UIAlertAction
+                    actionWithTitle:@"10 Minutes"
+                    style:UIAlertActionStyleDefault
+                    handler:^(UIAlertAction *action) {
+                        [self saveAndScheduleDelay:10 * 60];
+                    }];
+                
+                [alert addAction:threeMinAction];
+                [alert addAction:fiveMinAction];
+                [alert addAction:tenMinAction];
                 
                 UIWindow *window = [[UIApplication sharedApplication] keyWindow];
                 UIViewController *rootViewController = window.rootViewController;
@@ -54,6 +59,12 @@
             [self scheduleAbortWithDelay:seconds];
         }
     });
+}
+
++ (void)saveAndScheduleDelay:(double)seconds {
+    [[NSUserDefaults standardUserDefaults] setDouble:seconds forKey:@"DelayTimeInSeconds"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self scheduleAbortWithDelay:seconds];
 }
 
 + (void)scheduleAbortWithDelay:(double)seconds {
