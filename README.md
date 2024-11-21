@@ -1,5 +1,5 @@
 # Limitless
-An iOS framework that crashes the app it is injected after 5 minutes.
+An iOS framework that crashes the app it is injected after a selected time (3;5;10 minutes).
 
 ## Compatibility
 Any iOS/iPadOS device running iOS 9 or later, injectable in any app. Be aware about sideloading protection tho.
