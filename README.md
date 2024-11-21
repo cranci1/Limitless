@@ -5,7 +5,7 @@ An iOS framework that crashes the app it is injected after a selected time (3;5;
 Any iOS/iPadOS device running iOS 9 or later, injectable in any app. Be aware about sideloading protection tho.
 
 ## Usage
-To inject Limitless, you can use tools like [Sideloadly](https://sideloadly.io/) if you have a PC, or [Feather](https://github.com/khcrysalis/Feather) or any other iPA installer that supports frameworks injection:
+To inject Limitless, you can use tools like [Sideloadly](https://sideloadly.io/) if you have a PC, or any other iPA installer that supports frameworks injection:
 
 ### Sideloadly Process:
 
