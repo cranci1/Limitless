@@ -1,0 +1,7 @@
+Package: me.cranci.limitless
+Name: Limitless
+Version: 1.0.2
+Architecture: iphoneos-arm
+Description: An iOS framework that crashes the app it is injected after a selected time
+Maintainer: cranci1
+Author: cranci1
